@@ -108,7 +108,10 @@ const productList = () => {
 const startApp = () => {
   // PUT ALL CARDS ON THE DOM
   renderCards(referenceList)
+
+  // PUT CART TOTAL ON DOM
   cartTotal();
+
   // SELECT THE CARD DIV
   document.querySelector('#cards').addEventListener('click', toggleCart);
 
