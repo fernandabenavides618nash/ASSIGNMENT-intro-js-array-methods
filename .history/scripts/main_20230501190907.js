@@ -84,31 +84,36 @@ const buttonFilter = (event) => {
 // CALCULATE CART TOTAL
 // .reduce() & .some()
 const cartTotal = () => {
-  const cart = referenceList.filter(item => item.inCart);
-  const total = cart.reduce((a,b) => a + b.price, 0);
-  const freeItems = cart.some(item => item.price <= 0)
+  const cart = referenceList.filter(item => item.inCart)
+  const total = cart.reduce((a, b) => a + b.price, 0);
+  const free = cart.some(item => item.price <= o);
   document.querySelector("#cartTotal").innerHTML = total.toFixed(2);
 
-  if (freeItems) {
-    document.querySelector("#includes-free").innerHTML = 'INCLUDES FREE ITEMS';
+  if (free) {
+    document.querySelector('#includes-free').innerHTML = 'INCLUDES FREE ITEMS';
   } else {
-    document.querySelector("#includes-free").innerHTML = '';
+    document.querySelector('#includes-free').innerHTML = "";
   }
 }
-
 
 // RESHAPE DATA TO RENDER TO DOM
 // .map()
 const productList = () => {
-  return referenceList.map(item => ({ title: item.title, price: item.price, type: item.type }));
+  return referenceList.map(item => ({
+    title: item.title,
+     price: item.price,
+      type: item.type
+     }))
 }
-
 
  
 const startApp = () => {
   // PUT ALL CARDS ON THE DOM
   renderCards(referenceList)
+
+  // PUT CART TOTAL ON DOM
   cartTotal();
+
   // SELECT THE CARD DIV
   document.querySelector('#cards').addEventListener('click', toggleCart);
 
